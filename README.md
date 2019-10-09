@@ -54,7 +54,8 @@ So far I needed exactly this scenario I made this wrapper with REST interface:
      * JSON array with dimensions 
 
   **POST: /inference/file/$model**
-    *Makes an inference from the specified model on input data.*
+  
+   *Makes an inference from the specified model on input data.*
   
     Input:
     
@@ -65,7 +66,8 @@ So far I needed exactly this scenario I made this wrapper with REST interface:
       * Output tensor represented as serialized numpy array. Refer ncs_client for the details.
  
    **POST: /inference/path/$model**
-     *Makes an inference from the specified model on input data.*
+   
+   *Makes an inference from the specified model on input data.*
   
      Input:
      
