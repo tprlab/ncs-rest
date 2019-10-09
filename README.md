@@ -25,7 +25,7 @@ So far I needed exactly this scenario I made this wrapper with REST interface:
     
     * 503 otherwise
     
- **POST: /unload/<model>**
+ **POST: /unload/$model**
   
    *Removes the model from the service (Looks like NCS does not support unload of the models)*
    
@@ -43,7 +43,7 @@ So far I needed exactly this scenario I made this wrapper with REST interface:
      
      * List of loaded models in JSON format
      
- **GET: /input/shape/<model>** 
+ **GET: /input/shape/$model** 
   
    *Returns shape of an input tensor of the specified model*
    
@@ -53,7 +53,7 @@ So far I needed exactly this scenario I made this wrapper with REST interface:
      
      * JSON array with dimensions 
 
-  **POST: /inference/file/<model>**
+  **POST: /inference/file/$model**
   
     *Makes an inference from the specified model on input data.*
   
@@ -65,7 +65,7 @@ So far I needed exactly this scenario I made this wrapper with REST interface:
     
       * Output tensor represented as serialized numpy array. Refer ncs_client for the details.
  
-   **POST: /inference/path/<model>**
+   **POST: /inference/path/$model**
   
      *Makes an inference from the specified model on input data.*
   
@@ -77,73 +77,73 @@ So far I needed exactly this scenario I made this wrapper with REST interface:
      
        * Output tensor represented as serialized numpy array. Refer ncs_client for the details.
  
- **POST: /classify/file/<model>**
+ **POST: /classify/file/$model**
   
   *Does image classification with the specified model*
   
   Input:
   
-    * Same as /inference/file/<model>
+    * Same as /inference/file/$model
   
   Output:
   
     * JSON array with classes and probabilities
  
- **POST: /classify/path/<model>**
+ **POST: /classify/path/$model**
   
   *Does image classification with the specified model*
   
   Input:
   
-    * Same as /inference/path/<model>
+    * Same as /inference/path/$model
     
   Output:
   
     * JSON array with classes and probabilities
  
- **POST: /detect/file/<model>**
+ **POST: /detect/file/$model**
   
   *Does object detection on input image with the specified model*
   
   Input:
   
-    * Same as /inference/file/<model>
+    * Same as /inference/file/$model
   
   Output:
   
     * JSON array with classes, coordinates and probabilities
  
- **POST: /detect/path/<model>**
+ **POST: /detect/path/$model**
   
   *Does object detection on input image with the specified model*
   
   Input:
   
-    * Same as /inference/path/<model>
+    * Same as /inference/path/$model
   
   Output:
   
     * JSON array with classes, coordinates and probabilities
  
- **POST: /segment/file/<model>**
+ **POST: /segment/file/$model**
   
   *Does semantic segmentation of an input image with the specified model*
   
   Input:
   
-    * Same as /inference/file/<model>
+    * Same as /inference/file/$model
   
   Output:
   
     * Matrix with most probable classes for each pixel as serialized numpy array
  
- **POST: /segment/path/<model>**
+ **POST: /segment/path/$model**
   
   *Does semantic segmentation of an input image with the specified model*
   
   Input:
   
-    * Same as /inference/path/<model>
+    * Same as /inference/path/$model
   
   Output:
   
