@@ -67,7 +67,7 @@ def get_class_tensor(data):
         if data[cls] < thr:
             break;
         logging.debug(("Class", cls, "score", data[cls]))
-        c = {"class" : cls, "score" : int(100 * data[cls])}
+        c = {"class" : int(cls), "score" : int(100 * data[cls])}
         data[cls] = 0
         ret.append(c)
     return ret

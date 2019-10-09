@@ -126,7 +126,7 @@ def classify(model):
     rc, ret = ncs_ctrl.classify_file(model, data)
     if not rc:
         return jsonify({"error" : ret}), requests.codes.bad_request
-    return send_np_array(ret)
+    return jsonify(ret), requests.codes.ok
 
 
 @app.route('/classify/path/<model>', methods=['POST'])
@@ -139,7 +139,7 @@ def classify_file(model):
     rc, ret = ncs_ctrl.classify_path(model, path)
     if not rc:
         return jsonify({"error" : ret}), requests.codes.bad_request
-    return send_np_array(ret)
+    return jsonify(ret), requests.codes.ok
 
 
 @app.route('/detect/file/<model>', methods=['POST'])

@@ -64,5 +64,5 @@ def run_ncs(model, net, image):
 if __name__ == "__main__":
     ncs = init_ncs()
     device = ncs.device
-    #print(dir(ncs))
-    print(dir(device))
+    print(dir(ncs))
+    #print(dir(device))
