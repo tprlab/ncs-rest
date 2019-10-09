@@ -57,11 +57,11 @@ So far I needed exactly this scenario I made this wrapper with REST interface:
   
    *Makes an inference from the specified model on input data.*
   
-    Input:
+   Input:
     
       * Binary content of the image file passed as multipart
     
-    Output:
+   Output:
     
       * Output tensor represented as serialized numpy array. Refer ncs_client for the details.
  
@@ -69,11 +69,11 @@ So far I needed exactly this scenario I made this wrapper with REST interface:
    
    *Makes an inference from the specified model on input data.*
   
-     Input:
+   Input:
      
        * Path to image. Assumed the image is available via filesystem.
     
-     Output:
+   Output:
      
        * Output tensor represented as serialized numpy array. Refer ncs_client for the details.
  
