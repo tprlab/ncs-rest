@@ -32,6 +32,16 @@ def read_np_array(rsp):
     memfile.seek(0)
     return np.load(memfile)
 
+def read_memfile(path):
+    with open(path, "rb") as f:
+        content = f.read()
+        memfile = io.BytesIO()
+        memfile.write(content)
+        memfile.seek(0)
+        return memfile
+
+
+
 def read_json(rsp):
     return rsp.json()
 
@@ -52,6 +62,14 @@ def request_with_file(url, path, trans_proc):
         if rsp.status_code == requests.codes.ok:
             return True, rsp if trans_proc is None else trans_proc(rsp)
         return False, rsp.content
+
+def request_with_memfile(url, f, trans_proc):
+    params = dict (file = f)
+    rsp = requests.post(url, files=params, verify=False)
+    if rsp.status_code == requests.codes.ok:
+        return True, rsp if trans_proc is None else trans_proc(rsp)
+    return False, rsp.content
+
 
 def request_with_path(url, path, trans_proc):
     headers = {'Content-type': 'application/json'}

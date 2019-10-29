@@ -35,11 +35,41 @@ def send_np_array(a):
     out_file.seek(0)
     return send_file(out_file, mimetype="application/octet-stream")
 
+def get_request_file(request):
+    if 'file' not in request.files:
+        return None
+
+    file = request.files['file']
+    input_file = io.BytesIO()
+    file.save(input_file)
+    return np.fromstring(input_file.getvalue(), dtype=np.uint8)
+
+
 
 
 @app.route('/')
 def index():
     return 'NCS REST Service'
+
+
+@app.route('/test/file', methods=['POST'])
+def test_file():
+    data = get_request_file(request)
+    if data is None:
+        "file", requests.codes.bad_request
+    ret = ncs_ctrl.test_file(data)
+    return send_np_array(ret)
+
+@app.route('/test/path', methods=['POST'])
+def test_path():
+    content = request.get_json()
+    if not "path" in content:
+        return jsonify({"missed" : "path"}), requests.codes.bad_request
+
+    path = content["path"]
+    ret = ncs_ctrl.test_path(path)
+    return send_np_array(ret)
+
 
 
 @app.route('/list', methods=['GET'])
@@ -81,14 +111,6 @@ def unload_model(model):
     return model, requests.codes.ok
 
 
-def get_request_file(request):
-    if 'file' not in request.files:
-        return None
-
-    file = request.files['file']
-    input_file = io.BytesIO()
-    file.save(input_file)
-    return np.fromstring(input_file.getvalue(), dtype=np.uint8)
 
 
 @app.route('/inference/file/<model>', methods=['POST'])

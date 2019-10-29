@@ -8,6 +8,16 @@ import numpy as np
 
 ncs_models = model_loader.get_models()
 
+
+def test_file(data):
+    return decode_image_data(data)
+
+
+def test_path(path):
+    rc, img = load_image(path)
+    return img
+
+
 def init_models():
     if len(ncs_conf.LOAD_ON_START) > 0:
         for m in ncs_conf.LOAD_ON_START:
